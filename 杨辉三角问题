@@ -1,0 +1,44 @@
+#include<stdio.h>
+#define  N  20
+void  CaculateYH(int a[][N], int  n);
+void  PrintYH(int a[][N], int  n);
+int main()
+{
+    int  a[N][N] = {0}, n;
+    printf("Input  n(n<20):");
+    scanf("%d", &n);     
+    CaculateYH(a, n);
+    PrintYH(a, n);
+    return 0;
+}
+ 
+/* 函数功能：计算杨辉三角形前n行元素的值 */
+void CaculateYH(int a[][N], int n)
+{
+    int  i, j;
+    for (i=0; i<n; i++)
+     {   
+        a[i][0] = 1;
+        a[i][i] = 1; 
+     }
+    for (i=2; i<n; i++)
+    {
+        for (j=1; j<=i-1; j++)
+        {
+           a[i][j] = a[i-1][j-1]+a[i-1][j];
+        }
+   } 
+}
+/* 函数功能：输出杨辉三角形前n行元素的值 */
+void PrintYH(int a[][N], int n)
+{
+    int  i, j;
+    for (i=0; i<n; i++)
+    {
+        for (j=0; j<=i; j++)
+        {
+            printf("%4d", a[i][j]);
+        }
+        printf("\n");
+    }
+}
