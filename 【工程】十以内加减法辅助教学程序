@@ -1,0 +1,129 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void Jiafa();
+void Jianfa();
+int main()
+{
+    int n;
+    printf("10以内加减法辅助教学程序\n");
+    printf("**********************************\n");
+    printf("**********************************\n");
+    printf("**                              **\n");
+    printf("**          1 加法练习          **\n");
+    printf("**          2 减法练习          **\n");
+    printf("**          3 程序说明          **\n");
+    printf("**          4 退出程序          **\n");
+    printf("**                              **\n");
+    printf("**********************************\n");
+    printf("**********************************\n");
+    printf("输入菜单项前的数字，选择功能，如数字超过菜单中的范围将显示0\n");
+    scanf("%d",&n);
+    switch(n)
+    {
+    case 1:
+        system("cls");
+         Jiafa();
+        break;
+    case 2:
+        system("cls");
+         Jianfa();
+        break;
+    case 3:
+        system("cls");
+        printf("该程序的作用为计算10以内加减法");
+        break;
+    case 4:
+        exit(0);
+    default:
+        printf("选择了功能0");
+    }
+}
+void Jiafa()
+{
+    int a,b,c,m,counter1=1;
+    static int flag=0;
+    float counter2=0;
+    snack:do{
+    srand(time(NULL));
+    a=rand()%10;
+    b=rand()%10;
+    c=a+b;
+    }
+    while(c>10);
+        while(counter1<=5)
+     {
+        counter1++;
+        printf("%d+%d=",a,b);
+        scanf("%d",&m);
+        if(m==c)
+        {
+            counter2++;
+            flag=1;
+            goto snack;
+        }
+        else
+        {
+            do{
+                counter1++;
+
+                printf("%d+%d=",a,b);
+                scanf("%d",&m);
+                if(m==c)
+                    counter2++;
+            }while(m!=c&&counter1<=5);
+        }
+     }
+     if(flag!=1)
+       {
+        printf("试答的次数太多,正确答案:%d+%d=%d\n",a,b,c);
+       }
+      printf("正确率为：%.1f",counter2/5);
+
+}
+void Jianfa()
+{
+    int a,b,c,m,counter1=1;
+    static int flag=0;
+    float counter2=0;
+    snack:do{
+    srand(time(NULL));
+    a=rand()%10;
+    b=rand()%10;
+    c=a-b;
+    }
+    while(c<=0);
+        while(counter1<=5)
+     {
+        counter1++;
+        printf("%d-%d=",a,b);
+        scanf("%d",&m);
+        if(m==c)
+        {
+            flag=1;
+            counter2++;
+            goto snack;
+        }
+        else
+        {
+            do{
+                counter1++;
+
+                printf("%d-%d=",a,b);
+                scanf("%d",&m);
+                if(m==c)
+                    counter2++;
+            }while(m!=c&&counter1<5);
+        }
+     }
+        if(flag!=1)
+        {
+            printf("试答的次数太多,正确答案:%d-%d=%d",a,b,c);
+        }
+        printf("正确率为：%.1f",counter2/5);
+
+
+}
+
+
+
