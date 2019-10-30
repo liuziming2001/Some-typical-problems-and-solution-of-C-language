@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+    int i,j,k,s,n=0;
+    int a[100]={0};
+     
+    for(i=0;i<5;i++)
+        for(j=0;j<5;j++)
+        {
+            s=2*i+3*j;
+             
+            for(for(k=0;a[k]!=0;k++))
+                if(s==a[k])
+                   break;
+                    
+            if(a[k]==0&&s>0)
+            {
+                s=a[k];
+                n++;
+            }
+        }
+         
+    printf("\n %d kinds:",n);
+     
+    for(k=0;a[k];k++)
+        printf("%2d,",a[k]);
+         
+    return 0;
