@@ -1,0 +1,1 @@
+# Some-typical-problems-and-solution-of-C-language
