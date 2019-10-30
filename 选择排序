@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int main()
+{
+    int i,j,k,m,n,temp,x;
+    scanf("%d",&n);
+    int Readscore[n];
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&Readscore[i]);
+    }
+    for(k=0;k<n-1;k++)
+    {
+        m=k;
+        for(j=k+1;j<n;j++)
+        {
+            if(Readscore[j]<Readscore[m])
+            m=j;
+        }
+        if(m!=k)
+        {
+            temp=Readscore[m];
+            Readscore[m]=Readscore[k];
+            Readscore[k]=temp;
+        }
+    }
+    for(x=0;x<n;x++)
+    {
+        printf("%d\n",Readscore[x]);
+    }
+
+
+}
