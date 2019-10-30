@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int main()
+{
+    int a,n,i,x,k=0,sum=0;
+    printf("Input n(n<=500):");
+    scanf("%d",&n);
+    int A[n];
+    for(a=0;a<n;a++)
+    {
+        A[a]=n-a;
+    }
+    for(i=0;i<n&&k<10;i++)
+    {
+        int flag=0;
+        for(x=2;x<A[i];x++)
+        {
+            if(A[i]%x==0)
+            flag=1;
+        }
+        if(flag==0&&A[i]!=1)
+        {
+            k++;
+            printf("%6d",A[i]);
+            sum=sum+A[i];
+        }
+    }
+    printf("\nsum=%d\n",sum);
+
+}
