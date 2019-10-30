@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    int n,i,k,j,t,m;
+    scanf("%d",&n);
+    int bubble[n];
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&bubble[i]);
+    }
+    for(k=0;k<n-1;k++)
+    {
+        for(j=0;j<n-1-k;j++)
+        {
+            if(bubble[j]<bubble[j+1])
+            {
+                t=bubble[j+1];
+                bubble[j+1]=bubble[j];
+                bubble[j]=t;
+
+            }
+        }
+    }
+    for(m=0;m<n;m++)
+        printf("%d\n",bubble[m]);
+
+
+}
