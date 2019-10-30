@@ -1,0 +1,129 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+int flag=0;
+int main()
+
+{
+    int ch;
+    snack:system("cls");
+    printf("**********************************\n");
+    printf("*                                *\n");
+    printf("*       游标式屏幕菜单示例       *\n");
+    printf("*                                *\n");
+    printf("*         >菜单项一              *\n");
+    printf("*          菜单项二              *\n");
+    printf("*          菜单项三              *\n");
+    printf("*          退出                  *\n");
+    printf("*                                *\n");
+    printf("**********************************\n");
+    printf("按上下方向键改变选择的菜单项，按回车键执行选择的功能...:");
+    while (1)
+    {
+        switch(flag)
+    {
+        case 0:
+    system("cls");
+    printf("**********************************\n");
+    printf("*                                *\n");
+    printf("*       游标式屏幕菜单示例       *\n");
+    printf("*                                *\n");
+    printf("*         >菜单项一              *\n");
+    printf("*          菜单项二              *\n");
+    printf("*          菜单项三              *\n");
+    printf("*          退出                  *\n");
+    printf("*                                *\n");
+    printf("**********************************\n");
+    printf("按上下方向键改变选择的菜单项，按回车键执行选择的功能...:");
+    ch=getch();
+    if (ch==13)
+    {system("cls");
+        printf("选择了第1项菜单，按回车键返回...");
+    ch=getch();
+    if(ch==13)
+    goto snack;}
+    else
+        break;
+        case 1:
+    system("cls");
+    printf("**********************************\n");
+    printf("*                                *\n");
+    printf("*       游标式屏幕菜单示例       *\n");
+    printf("*                                *\n");
+    printf("*          菜单项一              *\n");
+    printf("*         >菜单项二              *\n");
+    printf("*          菜单项三              *\n");
+    printf("*          退出                  *\n");
+    printf("*                                *\n");
+    printf("**********************************\n");
+    printf("按上下方向键改变选择的菜单项，按回车键执行选择的功能...:");
+    ch=getch();
+    if (ch==13)
+   {system("cls");
+       printf("选择了第2项菜单，按回车键返回...");
+    ch=getch();
+    if(ch==13)
+    goto snack;}
+     else
+        break;
+        case 2:
+    system("cls");
+    printf("**********************************\n");
+    printf("*                                *\n");
+    printf("*       游标式屏幕菜单示例       *\n");
+    printf("*                                *\n");
+    printf("*          菜单项一              *\n");
+    printf("*          菜单项二              *\n");
+    printf("*         >菜单项三              *\n");
+    printf("*          退出                  *\n");
+    printf("*                                *\n");
+    printf("**********************************\n");
+    printf("按上下方向键改变选择的菜单项，按回车键执行选择的功能...:");
+    ch=getch();
+    if (ch==13)
+    {system("cls");
+        printf("选择了第3项菜单，按回车键返回...");
+    ch=getch();
+    if(ch==13)
+    goto snack;}
+     else
+        break;
+         case 3:
+    system("cls");
+    printf("**********************************\n");
+    printf("*                                *\n");
+    printf("*       游标式屏幕菜单示例       *\n");
+    printf("*                                *\n");
+    printf("*          菜单项一              *\n");
+    printf("*          菜单项二              *\n");
+    printf("*          菜单项三              *\n");
+    printf("*         >退出                  *\n");
+    printf("*                                *\n");
+    printf("**********************************\n");
+    printf("按上下方向键改变选择的菜单项，按回车键执行选择的功能...:");
+    ch=getch();
+    if (ch==13)
+    exit(0);
+     else
+        break;
+
+
+    }
+
+
+     if(ch==72)
+     {
+         if(flag==0)
+            flag=3;
+         else flag--;
+     }
+     else if(ch==80)
+     {
+         if(flag==3)
+            flag=0;
+         else flag++;
+     }
+    }
+
+    return 0;
+}
