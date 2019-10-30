@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+int CountDigit(int number,int digit);
+int main()
+{
+    int m,n;
+    printf("Please input two integers:\n");
+    scanf("%d %d",&n,&m);
+    int a[n];
+    for(int i=0;i<n;i++)
+    {
+        a[i]=0;
+    }
+    int i=0,j=1;
+    int all=n;
+    while(n>0)
+    {
+        if(i>=all)
+        {
+            i=i%all;
+        }
+        if(a[i]!=-1)
+        {
+            if(j==m)
+            {
+                printf("%d",i+1);
+                a[i]=-1;
+                j=1;
+                i++;
+                n--;
+
+            }
+            else
+            {
+                i++;
+                j++;
+            }
+        }
+        else i++;
+    }
+}
