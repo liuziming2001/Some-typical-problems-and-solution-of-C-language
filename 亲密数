@@ -1,0 +1,21 @@
+#include  <stdio.h>
+ int main()
+ {
+     int m,n,i,j,x=0,y=0;
+     printf("Input m, n:\n");
+     scanf("%d,%d",&m,&n);
+     for(i=1;i<m;i++)
+     {
+         if(m%i==0)
+         x=x+i;
+     }
+      for(j=1;j<n;j++)
+     {
+         if(n%j==0)
+         y=y+j;
+     }
+     if(m==y&&n==x)
+        printf("Yes!\n");
+     else
+        printf("No!\n");
+ }
