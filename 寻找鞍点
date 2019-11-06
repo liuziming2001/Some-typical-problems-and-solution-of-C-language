@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+void FindSaddlePoint(int a[20][20], int m, int n);
+int main()
+{
+    int m,n,i,j,a[20][20];
+    printf( "Input m,n:\n");
+    scanf("%d,%d",&m,&n);
+    printf("Input matrix:\n" );
+    for(i=0;i<m;i++)
+      for(j=0;j<n;j++)
+    {
+        scanf("%d",&a[i][j]);
+    }
+    int k,x,y,e,f,b[20],c[20]={0},max,min,flag=0;
+    for(e=0;e<m;e++)
+    {
+      max=a[e][0];
+      for(f=1;f<n;f++)
+      {
+            if(max<a[e][f])
+            {
+              max=a[e][f];
+              b[e]=max,c[e]=f;
+            }
+      }
+    }
+    for(y=0;y<m;y++)
+    {
+        int snack=0;
+        for(x=0;x<m&&snack!=1;x++)
+        {
+            if(b[y]>a[x][c[y]])
+            snack=1;
+
+        }
+        if(snack!=1)
+        {
+            printf("a[%d][%d] is %d\n",y,c[y],b[y]);
+            flag=1;
+
+        }
+
+    }
+    if(flag!=1)
+    printf("No saddle point!\n");
+}
