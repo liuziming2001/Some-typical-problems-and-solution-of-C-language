@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+   char a[10];
+   int b[10]={0},i=0,j=0,k=0,flag=0;
+   printf("Input a string:");
+   gets(a);
+   while(a[i]!='\0')
+   {
+       if(a[i]>='0'&&a[i]<='9')
+       {
+           b[j++]=(int)(a[i]-48);
+           flag=1;
+
+       }
+       i++;
+   }
+   for(k=0;k<=j-1;k++)
+   {
+       printf("%d",b[k]);
+   }
+   if(flag==0)
+    printf("0");
+
+}
+解题思路的关键是：1）判断字符串中的字符是否是数字字符；2）如何将数字字符转换为其对应的数字值；3）如何将每一个转换后的数字值加起来形成一个整型数。
