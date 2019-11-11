@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+    char a[80],b[80];
+    int i=0,j=0,k,flag=0;
+    printf("Input a string:");
+    gets(a);
+    printf("Input another string:");
+    gets(b);
+    while(a[i]!='\0')
+    {
+        if(b[0]==a[i])
+        {
+            k=i+1;
+            flag=1;
+            break;
+        }
+        i++;
+    }
+
+    while(b[j]!='\0'&&a[i]!='\0')
+    {
+        if(b[j]!=a[i])
+        {
+            flag=0;
+            break;
+        }
+        i++,j++;
+    }
+    if(flag==1)
+        printf("Searching results:%d\n",k);
+    else if(flag==0)
+        printf("Not found!\n");
+    return 0;
+
+
+}
