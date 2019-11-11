@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+  char a[30],*pstart=NULL,*pend=NULL,flag=0;
+  int i,j;
+  printf("Input string:");
+  gets(a);
+  i=strlen(a);
+  pstart=&a[0],pend=&a[i-1];
+  while(pend-pstart>=0)
+  {
+      if(*pstart!=*pend)
+      {
+          flag=1;
+          printf("No!\n");
+          break;
+
+      }
+      pstart++;
+      pend--;
+  }
+  if(flag==0)
+    printf("Yes!\n");
+
+
+}
+提示：
+（1）设置两个指针pStart和pEnd，让pStart指向字符串首部，让pEnd指向字符串尾部。
+（2）利用循环从字符串两边对指针所指字符进行比较，当对应的两字符相等且两指针未超越对方时，使指针pStart向前移动一个字符位置（加1），使指针pEnd向后移动一个字符位置（减1），一旦发现两字符不等或两指针已互相超越（不可能是回文），则立即停止循环。
+（3）根据退出循环时两指针的位置，判断字符串是否为回文。
