@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+int main()
+{
+    char a[30][10],name[3][10]={"tom","jack","rose"};
+    int n,i,j,x=0,y=0,z=0;
+    printf("Input the number of electorates:");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        printf("Input vote %d:",i+1);
+        scanf("%s",&a[i]);
+    }
+    for(j=0;j<n;j++)
+    {
+        if(strcmp(a[j],name[0])==0)
+            x++;
+        else if(strcmp(a[j],name[1])==0)
+            y++;
+        else if(strcmp(a[j],name[2])==0)
+            z++;
+    }
+    printf("Election results:\n");
+    printf("tom:%d\n",x);
+    printf("jack:%d\n",y);
+    printf("rose:%d\n",z);
+    if(x>y&&x>z)
+        printf("tom wins\n");
+    else if(y>x&&y>z)
+        printf("jack wins\n");
+    else if(z>y&&z>x)
+        printf("rose wins\n");
+}
