@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+int fun(int n);
+int main()
+{
+    int ret,j=1;
+    float yu=1.0,e=1;
+    while(yu>0.0001)
+    {
+        ret=fun(j);
+        e=e+1.0/ret;
+        yu=1.0/fun(j);
+        j++;
+    }
+    printf("%f\n",e);
+}
+int fun(int n)
+{
+    int m=1,i;
+    for(i=1;i<=n;i++)
+        m=m*i;
+    return m;
+}
