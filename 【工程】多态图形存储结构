@@ -1,0 +1,202 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+struct Line
+{
+
+    int lx1;
+    int ly1;
+    int lx2;
+    int ly2;
+
+};
+struct Rectangle
+{
+
+    int rx1;
+    int ry1;
+    int rx2;
+    int ry2;
+
+
+};
+struct Circle
+{
+
+    int cx1;
+    int cy1;
+    int r;
+
+};
+struct Ellipse
+{
+
+    int x;
+    int y;
+    int a;
+    int b;
+
+};
+union Kind
+{
+    struct Line L;
+    struct Rectangle R;
+    struct Circle C;
+    struct Ellipse E;
+};
+typedef union Kind IMAGE;
+
+int main()
+{
+    char n;
+    IMAGE ID[100];
+    int i=0,j=0;
+    char a[50];
+    int b[50];
+    snack1:printf("Add/List/Delete/Quit\n");
+    printf("输入首字母选择功能：");
+    n=getch();
+    if(n=='a'||n=='A')
+    {
+        char m;
+        system("cls");
+        printf("Line/Rectangle/Circle/Ellipse\n");
+        printf("输入首字母选择要添加的图形种类，按ESC键返回：");
+        m=getch();
+        if(m=='l'||m=='L')
+        {
+            system("cls");
+            printf("请输入直线的两个端点坐标：x1,y1,x2,y2并按回车\n");
+            scanf("%d,%d,%d,%d",&ID[i].L.lx1,&ID[i].L.ly1,&ID[i].L.lx2,&ID[i].L.ly2);
+            b[i]=1;
+            printf("一条直线已经被添加，按任意键继续。。。");
+            i++;
+            getch();
+            system("cls");
+            goto snack1;
+        }
+        else if(m=='r'||m=='R')
+        {
+            system("cls");
+            printf("请输入矩形的左上角和右下角坐标：x1,y1,x2,y2并按回车\n");
+            scanf("%d,%d,%d,%d",&ID[i].R.rx1,&ID[i].R.ry1,&ID[i].R.rx2,&ID[i].R.ry2);
+            b[i]=2;
+            printf("一个矩形已经被添加，按任意键继续。。。");
+            i++;
+            getch();
+            system("cls");
+            goto snack1;
+        }
+        else if(m=='c'||m=='C')
+        {
+            system("cls");
+            printf("请输入圆心坐标和半径：x1,y1,r并按回车\n");
+            scanf("%d,%d,%d,%d",&ID[i].C.cx1,&ID[i].C.cy1,&ID[i].C.r);
+            b[i]=3;
+            printf("一个圆形已经被添加！按任意键继续。。。");
+            i++;
+            getch();
+            system("cls");
+            goto snack1;
+        }
+        else if(m=='e'||m=='E')
+        {
+            system("cls");
+            printf("请输入椭圆中心坐标，半长轴和半短轴：x,y,a,b并按回车\n");
+            scanf("%d,%d,%d,%d",&ID[i].E.x,&ID[i].E.y,&ID[i].E.a,&ID[i].E.b);
+            b[i]=4;
+            printf("一个椭圆已经被添加！按任意键继续。。。");
+            i++;
+            getch();
+            system("cls");
+            goto snack1;
+        }
+        else if(m==27)
+        {
+             system("cls");
+             goto snack1;
+        }
+        else
+        {
+            int t2;
+            system("cls");
+            printf("invilaid input!\n");
+            for(t2=0;t2<500000000;t2++)
+            {
+
+            }
+            system("cls");
+            goto snack1;
+        }
+    }
+    else if(n=='l'||n=='L')
+    {
+        system("cls");
+        for(int k1=0;k1<i;k1++)
+         {
+            int flag=0;
+            for(int k2=0;k2<j;k2++)
+            {
+                if(k1==a[k2])
+                    flag=1;
+            }
+            if(flag==0)
+            {
+                if(b[k1]==1)
+                    printf("ID=%d:直线：端点坐标为：x1=%d,y1=%d,x2=%d,y2=%d\n",k1,ID[k1].L.lx1,ID[k1].L.ly1,ID[k1].L.lx2,ID[k1].L.ly2);
+                if(b[k1]==2)
+                    printf("ID=%d:矩形：左上角坐标为：x1=%d,y1=%d；右下角坐标为：x2=%d,y2=%d\n",k1,ID[k1].R.rx1,ID[k1].R.ry1,ID[k1].R.rx2,ID[k1].R.ry2);
+                 if(b[k1]==3)
+                    printf("ID=%d:圆形：圆心坐标为：x=%d,y=%d;半径为：r=%d\n",k1,ID[k1].C.cx1,ID[k1].C.cy1,ID[k1].C.r);
+                 if(b[k1]==4)
+                    printf("ID=%d:椭圆：中心坐标为：x=%d,y=%d;半长轴为：a=%d,半短轴为：b=%d\n",k1,ID[k1].E.x,ID[k1].E.y,ID[k1].E.a,ID[k1].E.b);
+            }
+         }
+         printf("按任意键继续。。。");
+         getch();
+         system("cls");
+         goto snack1;
+    }
+    else if(n=='d'||n=='D')
+    {
+        char ch;
+        system("cls");
+        printf("请输入要删除的图形的ID号或按ESC返回：\n");
+        ch=getch();
+        if(ch==27)
+        {
+            system("cls");
+            goto snack1;
+        }
+        else
+        {
+            a[j]=ch-'0';
+            if(a[j]<=i)
+            {
+                printf("ID为%d的图形被删除！",a[j]);
+                j++;
+            }
+            else if(a[j]>i)
+            printf("ID为%d的图形未找到！",a[j]);
+            getch();
+            system("cls");
+            goto snack1;
+        }
+    }
+    else if(n=='q'||n=='Q')
+    {
+          exit(0);
+    }
+    else
+    {   int t1;
+        system("cls");
+        printf("invilaid input!\n");
+        for(t1=0;t1<500000000;t1++)
+        {
+
+        }
+        system("cls");
+        goto snack1;
+    }
+
+}
