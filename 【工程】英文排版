@@ -1,0 +1,125 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+void standardize(char *straline,int numcolume);
+int countspace(char *str);
+int main()
+{
+    char strtext[1000];
+    int numcolumn,startchar,endchar,len;
+    int y;
+    for(y=0;y<1000;y++)
+        strtext[y]='\0';
+    char straline[1000],stroutput[1000];
+
+    printf("input original text:");
+    gets(strtext);
+    printf("input numcolumn:");
+    scanf("%d",&numcolumn);
+    len=strlen(strtext);
+    startchar=0,endchar=numcolumn-1;
+    if(len<=numcolumn)
+    {
+        puts(strtext);
+    }
+    else
+    {
+        while(endchar<len)
+       {
+        int k;
+        for(k=0;k<1000;k++) straline[k]='\0';
+        if(strtext[endchar]==','||strtext[endchar]=='.'||strtext[endchar]=='!')
+        {
+            int i;
+            for(i=startchar;i<=endchar;i++)
+            {
+                printf("%c",strtext[i]);
+            }
+             printf("\n");
+            startchar=endchar+1,endchar=endchar+numcolumn;
+        }
+        else if(strtext[endchar]==' ')
+        {
+             strncpy(straline,strtext+startchar,numcolumn-1);
+             int a,b=0,c,flag;
+             char s1[100];
+             for(a=0;a<numcolumn-1;a++)
+             {
+                 if(straline[a]==' ')
+                 {
+                     flag=a;
+                     break;
+                 }
+             }
+             strncpy(s1,straline+flag+1,numcolumn-flag-2);
+             straline[a+1]=' ';
+             strncpy(straline+flag+2,s1,numcolumn-flag-2);
+             while(straline[b]!='\0')
+             {
+                 printf("%c",straline[b]);
+                 b++;
+             }
+             printf("\n");
+             startchar=endchar+1,endchar=endchar+numcolumn;
+        }
+        else
+        {
+            char s2[50];
+            int j=numcolumn-1;
+            strncpy(s2,strtext+startchar,numcolumn);
+            while(s2[j]!=' ')
+            {
+                j--;
+            }
+            strncpy(straline,strtext+startchar,j);
+            standardize( straline,numcolumn);
+            startchar=startchar+j+1,endchar=startchar+numcolumn;
+        }
+       }
+       int m;
+       for(m=startchar;m<=endchar;m++)
+       printf("%c",strtext[m]);
+       printf("%c",'\0');
+
+    }
+
+}
+void standardize(char *straline,int numcolume)
+{
+    int spacenum=countspace(straline);//原来空格数
+    int span=numcolume-strlen(straline); //插入总量
+    int insertnum=span/spacenum; //平均每个空格后面插入数量
+    int restnum=span%spacenum;//多余空格
+    int i,count=0;
+    char output[200];
+    for (i=0;i<numcolume;i++) output[i]=' '; //初始化每一位都是空格再填数
+    for (i=0;i<strlen(straline);i++)
+    {
+        if (straline[i]==' ')
+        {
+             count=count+insertnum;
+            if (restnum>0)
+            {
+                count++;
+                restnum--;
+            }
+        }
+        output[count]=straline[i];
+        count++;
+    }
+    output[count]='\0';
+    puts(output);
+}
+int countspace(char *str)
+{
+    int count=0;
+    int i;
+    for (i=0;i<strlen(str);i++)
+    {
+        if (str[i]==' ')
+            count++;
+    }
+    return count;
+
+}
+
