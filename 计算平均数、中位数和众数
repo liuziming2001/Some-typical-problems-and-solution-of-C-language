@@ -1,0 +1,45 @@
+#include  <stdio.h>
+#include  <stdlib.h>
+int main()
+{
+    int m,n,i,j,k,t,a[50],mean,median,mode,sum=0,flag=0,max=0;
+    printf("Input the feedbacks of 40 students:\n");
+    for(i=0;i<40;i++)
+    {
+        scanf("%d",&a[i]);
+        sum=sum+a[i];
+    }
+    for(j=0;j<40;j++)
+        for(k=1;k<40;k++)
+    {
+        if(a[k]<a[j])
+        {
+            t=a[k];
+            a[k]=a[j];
+            a[j]=t;
+        }
+    }
+    median=(a[19]+a[20])/2;
+    mean=sum/40;
+    mode=a[0];
+    for(m=0;m<40;m++)
+    {
+        if(a[m]!=a[m+1])
+        {
+
+            if(max<m-flag+1)
+               {
+                  max=m-flag+1;
+                  mode=a[m];
+               }
+            flag=m;
+        }
+    }
+    printf("Mean value=%d\n",mean);
+    printf("Median value=%d\n",median);
+    printf( "Mode value=%d\n",mode);
+    return 0;
+
+
+
+}
