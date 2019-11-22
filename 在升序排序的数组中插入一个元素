@@ -1,0 +1,33 @@
+#include  <stdio.h>
+#include  <stdlib.h>
+int main()
+{
+    int a[50]={0},i,j,k,n,m,x,flag;
+    printf("Input array size:\n");
+    scanf("%d",&m);
+    printf("Input array:\n");
+    for(i=0;i<m;i++)
+    scanf("%d",&a[i]);
+    printf("Input x:\n");
+    scanf("%d",&x);
+    for(j=0;j<m;j++)
+    {
+        if(x<a[j])
+        {
+            for(k=m;k>j;k--)
+            {
+                a[k]=a[k-1];
+            }
+            a[j]=x;
+            break;
+        }
+    }
+    printf("After insert %d:\n",x);
+    for(i=0;i<m+1;i++)
+        printf("%4d",a[i]);
+    return 0;
+
+
+
+
+}
