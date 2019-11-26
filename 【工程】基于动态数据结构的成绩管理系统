@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+typedef struct FIELDATRR//定义一个结构体，用于接收字段信息，包括字段名，字段类型，字段长度，字段ID
+{
+     int fieldId;
+     char fieldCaption[11];
+     char fieldType;
+     int fieldLen;
+
+}F;
+int main()
+{
+    int m,n,i,j,sum=0;
+    F filde[30];
+    printf("请输入记录的字段数：");
+    scanf("%d",&m);
+    printf("请输入记录条数：");
+    scanf("%d",&n);
+    system("cls");
+    for(i=0;i<m;i++)
+    {
+        filde[i].fieldId=i;//系统自动录入ID值
+        printf("请输入字段名称:");
+        scanf("%s",filde[i].fieldCaption);
+        printf("请输入选择字段类型（int n,string s）：");
+        scanf(" %c",&filde[i].fieldType);
+        if(filde[i].fieldType=='s')
+        {
+            printf("输入字符串长度：");
+            scanf("%d",&filde[i].fieldLen);
+            filde[i].fieldLen++;
+            printf("一个字符属性输入完毕，按任意键继续。。。\n");
+            getch();
+
+        }
+        else if(filde[i].fieldType=='n')
+        {
+            filde[i].fieldLen=4;
+            printf("一个字符属性输入完毕，按任意键继续。。。\n");
+            getch();
+        }
+
+    }
+    printf("字段属性信息已录入完毕，按任意键查看。。。");
+    getch();
+    system("cls");
+    printf("已建立记录的字段属性信息：\n");
+    for(i=0;i<m;i++)
+    {
+        printf("字段ID：%-3d,%-11s,%-3d,%c\n",i+1,filde[i].fieldCaption,filde[i].fieldLen,filde[i].fieldType);
+        sum=sum+filde[i].fieldLen;
+    }
+    printf("%d\n",sum);
+    printf("按任意键，可以录入信息\n");
+    getch();
+    system("cls");
+    /*录入各字段的信息*/
+    char *p=(char *)calloc(sum*n,sizeof(char));//申请一片连续内存，sum相当于存储一个同学数据所需要的最大字节数，n是同学人数，可理解为一个二维数组
+    int flag=0;
+    int num,numbur=0;
+    for(j=0;j<n;j++)
+    {
+        num=0;
+        for(i=0;i<m;i++)
+        {
+
+            printf("%s=",filde[i].fieldCaption);
+            if(filde[i].fieldType=='s')
+                scanf("%s",p+j*sum+num);
+            else
+                scanf("%d",(int *)(p+j*sum+num));//此处需要用（int*）进行强转
+            num=num+filde[i].fieldLen;//num用于累加每录入一个同学数据时，一种一种字段类型所占字节数向下累加，并在每次循环开始前初始化为零
+        }
+        numbur++;
+        printf("一条记录录入完毕！按任意键继续录入，按ESC键返回\n");
+        if(getch()==27)
+        {
+            flag=1;
+            system("cls");
+            break;
+        }
+        else
+            continue;
+
+
+    }
+    if(flag==0)
+    {
+        printf("已经录入完了最后一条记录，按任意键可浏览输入的数据");
+        getch();
+
+    }
+    system("cls");
+    printf("已经录入的信息：\n");
+    for(j=0;j<numbur;j++)//此处边际值用numbur控制而没有用n的目的是，保证中途esc退出后不会打印出剩余未录入内容但已分配内存的学生信息段
+    {
+        num=0;
+        for(i=0;i<m;i++)
+        {
+            if(filde[i].fieldType=='s')
+                printf("%s:%s\t",filde[i].fieldCaption,p+j*sum+num);//利用%s输出字符串时，给地址值即可，不需要解引用
+            else
+                printf("%s:%d\t",filde[i].fieldCaption,*(int *)(p+j*sum+num));//输出时也需要用（int*）进行强转，并且解引用
+            num=num+filde[i].fieldLen;
+        }
+        printf("\n");
+    }
+    free(p);
+    printf("程序执行完毕！按任意键退出程序。。。");
+    getch();
+    exit(0);
+
+
+}
