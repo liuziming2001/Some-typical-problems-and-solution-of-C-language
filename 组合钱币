@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int a=0,b=0,c=0,d=0,e=0,f=0,g=0,h=0,n1,n2,n3;
+    float num;
+    scanf("%f",&num);
+    a=num/100;
+    n1=(int)num%100/10;
+    if(n1>=5)
+    {
+        b=1;
+        c=n1-5;
+    }
+    else
+    {
+        b=0;
+        c=n1;
+    }
+    n2=(int)num%10;
+    if(n2>=5)
+    {
+        d=1;
+        e=n2-5;
+    }
+    else
+    {
+        d=0;
+        e=n2;
+    }
+    n3=(int)(num*10)%10;
+    if(n3>=5)
+    {
+        f=1;
+        g=n3-5;
+    }
+    else
+    {
+        f=0;
+        g=n3;
+    }
+    printf("%.1f元=",num);
+    if(a!=0)
+        printf("%d张壹佰元+",a);
+    if(b!=0)
+        printf("%d张伍拾元+",b);
+    if(c!=0)
+        printf("%d张壹拾元+",c);
+    if(d!=0)
+        printf("%d张伍元+",d);
+    if(e!=0)
+        printf("%d张壹元+",e);
+    if(f!=0)
+    {
+        if(g!=0)
+            printf("%d张伍角+%d张壹角",f,g);
+        else
+            printf("%d张伍角",f);
+
+    }
+    printf("\n");
+
+
+
+}
