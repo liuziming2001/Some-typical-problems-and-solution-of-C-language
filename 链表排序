@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+struct link
+{
+    int data;
+    struct link *next;
+};
+int main()
+{
+    int n,m;
+    struct link *head=NULL;
+    scanf("%d",&n);
+    for(m=0;m<n;m++)
+    {
+        struct link *p=NULL,*pr=head;
+        int data;
+        p=(struct link*)malloc(sizeof(struct link));
+        if(head==NULL)
+        {
+            head=p;
+        }
+        else
+        {
+            while(pr->next!=NULL)
+            {
+                pr=pr->next;
+            }
+            pr->next=p;
+        }
+        scanf("%d",&data);
+        p->data=data;
+        p->next=NULL;
+    }
+    struct link *i,*j;
+    int t;
+    for(i=head;i!=NULL;i=i->next)
+       for(j=i->next;j!=NULL;j=j->next)
+       {
+           if(j->data<i->data)
+           {
+               t=j->data;
+               j->data=i->data;
+               i->data=t;
+           }
+       }
+    i=head;
+    while(i!=NULL)
+    {
+        printf("%d\n",i->data);
+        i=i->next;
+    }
+    i=head,j=NULL;
+    while(i!=NULL)
+    {
+        j=i;
+        i=i->next;
+        free(j);
+    }
+
+
+
+}
