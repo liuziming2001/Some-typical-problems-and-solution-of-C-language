@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+struct link
+{
+    char id[11];
+    char name[11];
+    float C;
+    float math;
+    struct link *next;
+};
+int main()
+{
+    int flag=0;
+    struct link *head=NULL,*i,*j;
+    while(1)
+    {
+
+        struct link *p=NULL,*pr=head;
+        p=(struct link*)malloc(sizeof(struct link));/*p指向新申请内存空间的地址*/
+        if(head==NULL)
+        {
+            head=p;
+        }
+        else
+        {
+            while(pr->next!=NULL)
+            {
+                pr=pr->next;
+            }
+            pr->next=p;
+        }
+
+        printf("请输入学号：");
+        gets(p->id);
+        if(p->id[0]=='\0')
+        {
+            break;
+        }
+        flag=1;
+        printf("请输入姓名：");
+        gets(p->name);
+        printf("请输入C语言和工数的成绩，并用空格分开。输入后请按回车：");
+        scanf("%f%f",&p->C,&p->math);
+        getchar();/*读入输入成绩时键入的回车，防止被下一个节点的p->id误读*/
+        p->next=NULL;
+         
+    }
+    if(flag==0)
+       {
+          printf("未输入任何数据！");
+          printf("程序结束！");
+       }
+    else
+   {
+
+    printf("输入结束，刚刚输入的数据为：\n");
+    printf("学号       姓名       C语言  工数  \n");
+    i=head;/*遍历指针指向头节点*/
+    while(i->next->next!=NULL)/*因为前面读入回车作为终止条件时，以为回车单独开了一片内存作为节点，
+        所以打印时应跳过这个无用节点，也即到倒数第二个节点即停止打印*/
+    {
+        printf("%-10s %-10s %-5.1f %-5.1f\n",i->id,i->name,i->C,i->math);
+        i=i->next;
+    }
+    printf("程序结束！");
+   }
+    i=head,j=NULL;
+    while(i!=NULL)
+    {
+        j=i;
+        i=i->next;
+        free(j);
+    }
+
+
+
+}
