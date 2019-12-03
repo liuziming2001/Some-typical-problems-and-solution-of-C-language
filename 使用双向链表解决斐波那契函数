@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct line
+{
+  int nNum;
+  struct line *next;
+  struct line *prev;
+};
+int main()
+{
+    struct line *head=NULL,*pr=NULL,*p=NULL;
+    int n,i;
+    scanf("%d",&n);
+    p=(struct line*)malloc(sizeof(struct line));
+    head=p;
+    p->nNum=1;
+    p->next=NULL;
+    p->prev=NULL;
+    p=(struct line*)malloc(sizeof(struct line));
+    head->next=p;
+    p->nNum=1;
+    p->next=NULL;
+    p->prev=head;
+    pr=p;
+    for( i=0;i<n-2;i++)
+    {
+        p=(struct line*)malloc(sizeof(struct line));
+        pr->next=p;
+        p->prev=pr;
+        pr=p;
+        p->nNum=p->prev->nNum+p->prev->prev->nNum;
+        p->next=NULL;
+    }
+    pr=head;
+    for(i=0;i<n;i++)
+    {
+        printf(" %d",pr->nNum);
+        pr=pr->next;
+    }
+    printf("\n");
+    pr=head,p=NULL;
+    while(pr!=NULL)
+    {
+        p=pr;
+        pr=pr->next;
+        free(p);
+    }
+}
