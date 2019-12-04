@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct line
+{
+  int num;
+  struct line *next;
+};
+int main()
+{
+    struct line *head=NULL,*pr=NULL,*p=NULL,*pt=NULL;
+    int n,i;
+    scanf("%d",&n);
+    for( i=1;i<=n;i++)
+    {
+        p=(struct line*)malloc(sizeof(struct line));
+        if(head==NULL)
+        {
+            head=p;
+
+        }
+        else
+        {
+            pr->next=p;
+
+        }
+        p->num=i;
+        p->next=NULL;
+        pr=p;
+    }
+    pr=head;
+    for(i=1;i<n;i++)
+    {
+
+        printf(" %d",pr->num);
+        pr=pr->next;
+    }
+    printf(" %d",pr->num);
+    printf("\n");
+    p=head;
+    pt=head->next;
+    for(i=1;i<=n/2;i++)
+    {
+        p->next=p->next->next;
+        pr->next=pt,pt->next=NULL,pr=pt;
+        p=p->next,pt=p->next;
+    }
+    pr=head;
+    for(i=0;i<n;i++)
+    {
+        printf(" %d",pr->num);
+        pr=pr->next;
+    }
+    printf("\n");
+    pr=head,p=NULL;
+    while(pr!=NULL)
+    {
+        p=pr;
+        pr=pr->next;
+        free(p);
+    }
+}
