@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct line
+{
+  int num;
+  struct line *next;
+};
+int main()
+{
+    struct line *head=NULL,*pr=NULL,*p=NULL,*pt=NULL;
+    int i;
+    for( i=1;i<=27;i++)
+    {
+        p=(struct line*)malloc(sizeof(struct line));
+        if(head==NULL)
+        {
+            head=p;
+
+        }
+        else
+        {
+            pr->next=p;
+
+        }
+        p->num=i;
+        p->next=NULL;
+        pr=p;
+    }
+    pr->next=head;
+    pt=head;
+    while(pt->next!=pt)
+    {
+        pt=pt->next;
+        pt->next=pt->next->next;
+        pt=pt->next;
+    }
+    printf("最后在圈中的人的序号为：%d\n",pt->num);
+    free(pt);
+}
